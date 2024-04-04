@@ -1,14 +1,12 @@
-import { Foter } from "./Components/Layout/Foter/Foter"
-import { Menu } from "./Components/Layout/Menu/Menu"
+import React from "react";
+import Routes from "./routes";
 
-function App() {
-
+const App: React.FC = () => {
   return (
     <>
-      <Menu />
-      <Foter />
+      <Routes />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
