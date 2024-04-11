@@ -1,15 +1,15 @@
+import { CreateRecipe } from "@/Components/Component/NewRecipe/CreateRecipe";
 import { Foter } from "@/Components/Layout/Foter/Foter";
 import { Header } from "@/Components/Layout/Menu/Header";
-import { Recipes } from "@/Components/Component/RecipeItem/Recipes";
 
-const GlobalRecipe: React.FC = () => {
+const Createrecipe = () => {
   return (
     <>
       <Header />
-      <Recipes />
+      <CreateRecipe />
       <Foter />
     </>
   );
 };
 
-export default GlobalRecipe;
+export default Createrecipe;
