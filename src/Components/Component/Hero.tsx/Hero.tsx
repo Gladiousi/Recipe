@@ -33,7 +33,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full h-full bg-bg-Hero select-none overflow-y-hidden">
+    <div className="w-full h-screen bg-bg-Hero select-none overflow-y-hidden">
       <div className="grid grid-cols-2 max-laptop:grid-cols-1 max-laptop:grid-rows-reverse gap-10 p-10 ">
         <div className="flex justify-end max-laptop:justify-center mt-16 max-laptop:col">
           <img className="w-[50%]" src="/public/IMG_1524.png" alt="logo" />

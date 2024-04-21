@@ -1,9 +1,28 @@
 import { useFavorites } from "@/hooks/useFavorites";
 import { RecipeItem } from "@/Components/Component/RecipeItem/RecipeItem";
 import { FaHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { IRecipeItem } from "../../../core/types/ComponentsTypes/ComponentsTypes";
 
 export const Recipes: React.FC = () => {
   const { favorites } = useFavorites();
+  const [recipes, setRecipes] = useState<IRecipeItem[]>([]);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch("src/db.json");
+        const data = await response.json();
+        setRecipes(data.recipes);
+        console.log("Загруженные рецепты:", data.recipes);
+      } catch (error) {
+        console.error("Ошибка при загрузке рецептов:", error);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
   return (
     <div className="h-full">
       <div className="relative justify-end">
@@ -13,20 +32,13 @@ export const Recipes: React.FC = () => {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-10 m-10 max-laptop:grid-cols-3 max-tablet:grid-cols-2 max-[600px]:grid-cols-1">
-        <RecipeItem
-          recipe={{
-            id: 1,
-            title: "Goat",
-            description: "delitions Goat",
-          }}
-        />
-        <RecipeItem
-          recipe={{
-            id: 2,
-            title: "Goat",
-            description: "delitions Goat",
-          }}
-        />
+        {recipes.length > 0 ? (
+          recipes.map((recipe) => (
+            <RecipeItem key={recipe.id} recipe={recipe} />
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </div>
   );
