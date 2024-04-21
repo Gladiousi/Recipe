@@ -26,6 +26,12 @@ const favoritesSlice = createSlice({
         state.favorites.push(recipe);
       }
     },
+    isRecipeLiked: {
+      reducer: () => {},
+      prepare: (recipeId: string) => {
+        return { payload: recipeId }; 
+      },
+    },
   },
 });
 

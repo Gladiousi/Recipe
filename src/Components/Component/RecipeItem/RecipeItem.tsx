@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { IoIosHeartDislike } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-export const RecipeItem: React.FC<{ recipe: IRecipeItem }> = ( {recipe} ) => {
+export const RecipeItem: React.FC<{ recipe: IRecipeItem }> = ({ recipe }) => {
   const { favorites } = useFavorites();
   const { toggleFavorites } = useAction();
   const isExist = favorites.some((r: { id: number }) => r.id === recipe.id);
@@ -14,13 +14,15 @@ export const RecipeItem: React.FC<{ recipe: IRecipeItem }> = ( {recipe} ) => {
   return (
     <>
       {/* <a href=""> */}
-      <div className="flex  bg-slate-300 rounded-lg flex-col p-5 m-auto hover:bg-slate-400 duration-300">
+      <div className="flex w-[100%] bg-slate-300 rounded-lg flex-col p-5 m-auto hover:bg-slate-400 duration-300">
         <div>
           <img src="/public/IMG_1524.png" />
         </div>
-        <div>
-          <h2 className="">{recipe.title}</h2>
-          <h3 className="">{recipe.description}</h3>
+        <div className="max-w-full overflow-hidden">
+          <h1 className="text-2xl">{recipe.title}</h1>
+          <span className="whitespace-nowrap overflow-hidden text-ellipsis">
+            {recipe.description}
+          </span>
         </div>
         <button
           className="mt-5 bg-orange-600 rounded-lg p-2 text-white hover:opacity-70 duration-300 flex justify-center items-center gap-4"
@@ -28,7 +30,7 @@ export const RecipeItem: React.FC<{ recipe: IRecipeItem }> = ( {recipe} ) => {
         >
           {isExist ? "remove from" : "add to"} favorites{" "}
           {isExist ? <IoIosHeartDislike /> : <FaHeart />}
-        </button>
+        </button> 
         <Link to={`/RecipeLog/${recipe.id}`} className="w-full">
           <button className="mt-5 w-full bg-orange-600 rounded-lg p-2 text-white hover:opacity-70 duration-300 flex justify-center items-center gap-4">
             Open recipe
